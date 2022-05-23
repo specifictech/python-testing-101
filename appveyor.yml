@@ -53,20 +53,11 @@ build_script:
     $jsonVersion = $versionInfo | ConvertTo-Json
     echo $version
     echo $commit
-    [IO.File]::WriteAllText($jsonFile, $jsonVersion)
-    $systemConfigFile = "$env:APPVEYOR_BUILD_FOLDER\Config\System.json" 
-    $content = [IO.File]::ReadAllText($systemConfigFile)
-    $TARGETDIR = "c:\Specific\Logs\pyCific"
-    if(!(Test-Path -Path $TARGETDIR )){
-      New-Item -ItemType directory -Path $TARGETDIR
-    }
-    $config = $content | ConvertFrom-Json
-    $config.Windows.Folders.logFolder = "c:\Specific\Logs\pyCific"
-    $content = $config | ConvertTo-Json
 
 test_script:
   - cmd: |
         C:\Miniconda36-x64\Scripts\activate.bat C:\Miniconda36-x64
+        cd example-py-unittest
         python -m unittest
 
 # on_finish:
