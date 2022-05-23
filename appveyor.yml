@@ -39,7 +39,7 @@ install:
   - cmd: git config --global user.name "sdxsoftware"
   - cmd: git config --global user.email "software@specificdx.com"
   - cmd: git config -l
-  - py -m pip install tox
+#  - py -m pip install tox
 
 # scripts to run after build which packages files into an zip archive
 # create version info file and update logFolder location
@@ -55,10 +55,10 @@ build_script:
     echo $version
     echo $commit
 
-test_script:
-  - cmd: |
-        C:\Miniconda36-x64\Scripts\activate.bat C:\Miniconda36-x64
-  - py -m tox
+#test_script:
+#  - cmd: |
+#        C:\Miniconda36-x64\Scripts\activate.bat C:\Miniconda36-x64
+#  - py -m tox
 #        cd example-py-unittest
 #        python -m unittest
         
