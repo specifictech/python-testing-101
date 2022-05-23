@@ -39,6 +39,7 @@ install:
   - cmd: git config --global user.name "sdxsoftware"
   - cmd: git config --global user.email "software@specificdx.com"
   - cmd: git config -l
+  - py -m pip install tox
 
 # scripts to run after build which packages files into an zip archive
 # create version info file and update logFolder location
@@ -57,8 +58,10 @@ build_script:
 test_script:
   - cmd: |
         C:\Miniconda36-x64\Scripts\activate.bat C:\Miniconda36-x64
-        cd example-py-unittest
-        python -m unittest
+  - py -m tox
+#        cd example-py-unittest
+#        python -m unittest
+        
 
 # on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
