@@ -1,0 +1,73 @@
+image: Visual Studio 2019
+skip_commits:
+  author: Build-Version
+skip_tags: true
+
+init:
+  # Set "build version number" to "short-commit-hash" or when tagged to "tag name" (Travis style)
+  - ps: |
+       if(!$env:APPVEYOR_PULL_REQUEST_NUMBER){
+         $dateVersion=Get-Date -Format "yy.MM.dd"
+         Update-AppveyorBuild -Version "$dateVersion.$env:APPVEYOR_BUILD_NUMBER"
+       }
+
+pull_requests:
+  do_not_increment_build_number: true
+
+branches:
+  only:
+    - develop
+
+skip_branch_with_pr: true
+
+build: off
+environment:
+  deployuser:
+    secure: eHwiTz/bsrpoaoefOlk2tg==
+  avToken:
+    secure: Eae3QvmI3QYnE2QBCZ7WQbnkCwDJMhOPdiB82mJpq6M=
+  priv_key:
+    secure: 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
+  appveyor_rdp_password:
+    secure: 5HYIS5BfGgn3MN5eW+24iA==
+
+install:
+  - ps: $fileContent = "-----BEGIN OPENSSH PRIVATE KEY-----`n"
+  - ps: $fileContent += $env:priv_key.Replace(' ', "`n")
+  - ps: $fileContent += "`n-----END OPENSSH PRIVATE KEY-----`n"
+  - ps: Set-Content c:\users\appveyor\.ssh\id_rsa $fileContent
+  - cmd: git config --global user.name "sdxsoftware"
+  - cmd: git config --global user.email "software@specificdx.com"
+  - cmd: git config -l
+
+# scripts to run after build which packages files into an zip archive
+# create version info file and update logFolder location
+build_script:
+- ps: |
+    ipconfig
+    $version = $env:APPVEYOR_BUILD_VERSION 
+    $commit = $env:APPVEYOR_REPO_COMMIT
+    $jsonFile = "$env:APPVEYOR_BUILD_FOLDER\VersionInfo.json" 
+    $date = Get-Date -Format o
+    $versionInfo = @{Version=$version;Commit=$commit;Date=$date}
+    $jsonVersion = $versionInfo | ConvertTo-Json
+    echo $version
+    echo $commit
+    [IO.File]::WriteAllText($jsonFile, $jsonVersion)
+    $systemConfigFile = "$env:APPVEYOR_BUILD_FOLDER\Config\System.json" 
+    $content = [IO.File]::ReadAllText($systemConfigFile)
+    $TARGETDIR = "c:\Specific\Logs\pyCific"
+    if(!(Test-Path -Path $TARGETDIR )){
+      New-Item -ItemType directory -Path $TARGETDIR
+    }
+    $config = $content | ConvertFrom-Json
+    $config.Windows.Folders.logFolder = "c:\Specific\Logs\pyCific"
+    $content = $config | ConvertTo-Json
+
+test_script:
+  - cmd: |
+        C:\Miniconda36-x64\Scripts\activate.bat C:\Miniconda36-x64
+        python -m unittest
+
+# on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
