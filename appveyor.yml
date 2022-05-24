@@ -39,7 +39,7 @@ install:
   - cmd: git config --global user.name "sdxsoftware"
   - cmd: git config --global user.email "software@specificdx.com"
   - cmd: git config -l
-#  - py -m pip install tox
+  - py -m pip install pytest
 
 # scripts to run after build which packages files into an zip archive
 # create version info file and update logFolder location
