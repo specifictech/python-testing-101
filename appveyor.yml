@@ -58,7 +58,7 @@ build_script:
 test_script:
   - cmd: |
         C:\Miniconda36-x64\Scripts\activate.bat C:\Miniconda36-x64
-  - py -m pytest
+  - py -m pytest --junitxml=test_results.xml
 #        cd example-py-unittest
 #        python -m unittest
         
