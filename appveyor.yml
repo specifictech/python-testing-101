@@ -58,10 +58,14 @@ build_script:
 test_script:
   - cmd: |
         C:\Miniconda36-x64\Scripts\activate.bat C:\Miniconda36-x64
+
   - py -m pytest --junitxml=test_results.xml
+  - ps: |
+        $wc = New-Object 'System.Net.WebClient'
+        $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test_results.xml))
 #        cd example-py-unittest
 #        python -m unittest
-        
+
 
 # on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
