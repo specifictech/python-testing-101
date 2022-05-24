@@ -55,10 +55,10 @@ build_script:
     echo $version
     echo $commit
 
-#test_script:
-#  - cmd: |
-#        C:\Miniconda36-x64\Scripts\activate.bat C:\Miniconda36-x64
-#  - py -m tox
+test_script:
+  - cmd: |
+        C:\Miniconda36-x64\Scripts\activate.bat C:\Miniconda36-x64
+  - py -m pytest
 #        cd example-py-unittest
 #        python -m unittest
         
